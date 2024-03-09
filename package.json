@@ -68,7 +68,11 @@
     "prettier": "^3.0.3",
     "react": "18.2.0",
     "react-native": "0.73.5",
+    "react-native-audio-analyzer": "^1.1.1",
+    "react-native-blob-util": "^0.19.8",
     "react-native-builder-bob": "^0.23.2",
+    "react-native-gesture-handler": "^2.15.0",
+    "react-native-reanimated": "^3.7.2",
     "release-it": "^15.0.0",
     "turbo": "^1.10.7",
     "typescript": "^5.2.2"
@@ -78,7 +82,9 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-audio-analyzer": "*",
+    "react-native-blob-util": "*"
   },
   "workspaces": [
     "example"

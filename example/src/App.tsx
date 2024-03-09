@@ -1,26 +1,58 @@
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-audio-waveform';
+import { StyleSheet, View } from 'react-native';
+import AudioWave from 'react-native-audio-waveform';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const [progress, setProgress] = useState(0);
+  const progressRef = React.useRef(0);
+  const isReady = React.useRef(false);
 
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
+  useEffect(() => {
+    const timeout = setInterval(() => {
+      if (isReady.current) {
+        progressRef.current = progressRef.current + 0.01;
+        setProgress(progressRef.current);
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(timeout);
+    };
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <AudioWave
+          url={
+            'https://sculptures-api.projectuat.com/wp-content/uploads/2021/11/SxS-PAUL-CAPORN-PLUS-INTRO.mp3'
+          }
+          progress={progress}
+          containerHeight={40}
+          inactiveColor={'#fff'}
+          activeColor={'#1CA9C2'}
+          onChanged={(newProgress) => {
+            console.log('progress updated: ', newProgress);
+            progressRef.current = newProgress;
+            setProgress(newProgress);
+          }}
+          onReady={() => {
+            isReady.current = true;
+          }}
+        />
+      </View>
+    </GestureHandlerRootView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    paddingHorizontal: 20,
+    backgroundColor: '#00294A',
     justifyContent: 'center',
   },
   box: {
