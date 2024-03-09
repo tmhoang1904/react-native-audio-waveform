@@ -10832,41 +10832,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"react-native-audio-waveform@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "react-native-audio-waveform@workspace:."
-  dependencies:
-    "@commitlint/config-conventional": ^17.0.2
-    "@evilmartians/lefthook": ^1.5.0
-    "@react-native/eslint-config": ^0.73.1
-    "@release-it/conventional-changelog": ^5.0.0
-    "@types/jest": ^29.5.5
-    "@types/react": ^18.2.44
-    commitlint: ^17.0.2
-    del-cli: ^5.1.0
-    eslint: ^8.51.0
-    eslint-config-prettier: ^9.0.0
-    eslint-plugin-prettier: ^5.0.1
-    jest: ^29.7.0
-    prettier: ^3.0.3
-    react: 18.2.0
-    react-native: 0.73.5
-    react-native-audio-analyzer: ^1.1.1
-    react-native-blob-util: ^0.19.8
-    react-native-builder-bob: ^0.23.2
-    react-native-gesture-handler: ^2.15.0
-    react-native-reanimated: ^3.7.2
-    release-it: ^15.0.0
-    turbo: ^1.10.7
-    typescript: ^5.2.2
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-    react-native-audio-analyzer: "*"
-    react-native-blob-util: "*"
-  languageName: unknown
-  linkType: soft
-
 "react-native-blob-util@npm:^0.19.8":
   version: 0.19.8
   resolution: "react-native-blob-util@npm:0.19.8"
@@ -10945,6 +10910,41 @@ __metadata:
   checksum: ce1426c9e438331d68742568496e34b55abad19ee5573de42068ddcf9d73376a92584c8d164284391a526f2d80cc1b9d33598bb28a63bad341210cc16f694f84
   languageName: node
   linkType: hard
+
+"react-native-simple-audio-waveform@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "react-native-simple-audio-waveform@workspace:."
+  dependencies:
+    "@commitlint/config-conventional": ^17.0.2
+    "@evilmartians/lefthook": ^1.5.0
+    "@react-native/eslint-config": ^0.73.1
+    "@release-it/conventional-changelog": ^5.0.0
+    "@types/jest": ^29.5.5
+    "@types/react": ^18.2.44
+    commitlint: ^17.0.2
+    del-cli: ^5.1.0
+    eslint: ^8.51.0
+    eslint-config-prettier: ^9.0.0
+    eslint-plugin-prettier: ^5.0.1
+    jest: ^29.7.0
+    prettier: ^3.0.3
+    react: 18.2.0
+    react-native: 0.73.5
+    react-native-audio-analyzer: ^1.1.1
+    react-native-blob-util: ^0.19.8
+    react-native-builder-bob: ^0.23.2
+    react-native-gesture-handler: ^2.15.0
+    react-native-reanimated: ^3.7.2
+    release-it: ^15.0.0
+    turbo: ^1.10.7
+    typescript: ^5.2.2
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-audio-analyzer: "*"
+    react-native-blob-util: "*"
+  languageName: unknown
+  linkType: soft
 
 "react-native@npm:0.73.5":
   version: 0.73.5
