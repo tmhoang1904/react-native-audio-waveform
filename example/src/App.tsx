@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 
 import { StyleSheet, View } from 'react-native';
-import AudioWave from 'react-native-audio-waveform';
+import AudioWave from 'react-native-simple-audio-waveform';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function App() {
@@ -38,6 +38,9 @@ export default function App() {
             console.log('progress updated: ', newProgress);
             progressRef.current = newProgress;
             setProgress(newProgress);
+          }}
+          onSeekComplete={(newProgress) => {
+            console.log('onSeekComplete: ', newProgress);
           }}
           onReady={() => {
             isReady.current = true;

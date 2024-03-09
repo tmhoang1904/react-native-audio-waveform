@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "react-native-audio-waveform": ["./src/index"]
+      "react-native-simple-audio-waveform": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

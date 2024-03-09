@@ -23,16 +23,21 @@ export const AudioWave = React.memo((props: IProps) => {
     activeColor,
     inactiveColor,
     onChanged,
+    onSeekComplete,
     onLoading,
     onReady,
     onError,
   } = props;
+
   const [result, setResult] = useState<any[]>([]);
   const [containerWidth, setContainerWidth] = useState<number>(0);
   const position = useSharedValue(0);
   const progressChangedByActions = useRef<number>(0);
 
   const start = useCallback(async () => {
+    if (!url) {
+      return;
+    }
     try {
       onLoading?.();
       const response = await ReactNativeBlobUtil.config({
@@ -82,15 +87,36 @@ export const AudioWave = React.memo((props: IProps) => {
     [onChanged]
   );
 
-  const panGesture = Gesture.Pan().onUpdate((e) => {
-    // console.log('pan: ', e.x);
-    position.value = e.x;
-    if (containerWidth > 0) {
-      const _progress = e.x / containerWidth;
-      progressChangedByActions.current = _progress;
-      runOnJS(_onChanged)(_progress);
-    }
-  });
+  const _onSeekComplete = useCallback(
+    (progress: number) => {
+      let _progress = progress;
+      if (_progress < 0) {
+        _progress = 0;
+      } else if (_progress > 1) {
+        _progress = 1;
+      }
+      onSeekComplete?.(_progress);
+    },
+    [onSeekComplete]
+  );
+
+  const panGesture = Gesture.Pan()
+    .onUpdate((e) => {
+      // console.log('pan: ', e.x);
+      position.value = e.x;
+      if (containerWidth > 0) {
+        const _progress = e.x / containerWidth;
+        progressChangedByActions.current = _progress;
+        runOnJS(_onChanged)(_progress);
+      }
+    })
+    .onEnd((e) => {
+      if (containerWidth > 0) {
+        const _progress = e.x / containerWidth;
+        progressChangedByActions.current = _progress;
+        runOnJS(_onSeekComplete)(_progress);
+      }
+    });
 
   const tapGesture = Gesture.Tap().onEnd((e) => {
     // console.log('touch: ', e.x);

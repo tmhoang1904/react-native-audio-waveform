@@ -5,17 +5,7 @@ React Native Audio Waveform
 ## Installation
 
 ```sh
-npm install react-native-audio-waveform
-```
-
-## Usage
-
-```js
-import { multiply } from 'react-native-audio-waveform';
-
-// ...
-
-const result = await multiply(3, 7);
+npm install react-native-simple-audio-waveform
 ```
 
 ## Contributing
