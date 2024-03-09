@@ -125,6 +125,7 @@ export const AudioWave = React.memo((props: IProps) => {
       const _progress = e.x / containerWidth;
       progressChangedByActions.current = _progress;
       runOnJS(_onChanged)(_progress);
+      runOnJS(_onSeekComplete)(_progress);
     }
   });
 

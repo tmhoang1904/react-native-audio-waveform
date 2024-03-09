@@ -35,7 +35,6 @@ export const AudioWaveItemView = React.memo((props: IProps) => {
     <View
       style={styles.container}
       onLayout={(event) => {
-        console.log('event: ', event.nativeEvent.layout.x);
         setLayout(event.nativeEvent.layout);
       }}
     >
