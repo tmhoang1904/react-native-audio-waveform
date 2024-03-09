@@ -19,6 +19,7 @@ export const AudioWave = React.memo((props: IProps) => {
     style,
     progress,
     url,
+    prefetchOnly,
     containerHeight,
     activeColor,
     inactiveColor,
@@ -33,9 +34,14 @@ export const AudioWave = React.memo((props: IProps) => {
   const [containerWidth, setContainerWidth] = useState<number>(0);
   const position = useSharedValue(0);
   const progressChangedByActions = useRef<number>(0);
+  const urlChanged = useRef(false);
+
+  useEffect(() => {
+    urlChanged.current = true;
+  }, [url]);
 
   const start = useCallback(async () => {
-    if (!url) {
+    if (!url || !urlChanged.current) {
       return;
     }
     try {
@@ -43,6 +49,7 @@ export const AudioWave = React.memo((props: IProps) => {
       const response = await ReactNativeBlobUtil.config({
         fileCache: true,
       }).fetch('GET', url, {});
+      urlChanged.current = false;
       const path = response.path();
       const data = await analyzeAudio(path);
       setResult(data);
@@ -129,6 +136,10 @@ export const AudioWave = React.memo((props: IProps) => {
   });
 
   const composed = Gesture.Race(panGesture, tapGesture);
+
+  if (prefetchOnly) {
+    return null;
+  }
 
   return (
     <View style={[styles.container, style, { height: containerHeight }]}>
