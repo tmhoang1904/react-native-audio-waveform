@@ -84,7 +84,9 @@
     "react": "*",
     "react-native": "*",
     "react-native-audio-analyzer": "*",
-    "react-native-blob-util": "*"
+    "react-native-blob-util": "*",
+    "react-native-gesture-handler": ">=2.0.0",
+    "react-native-reanimated": ">=3.0.0"
   },
   "workspaces": [
     "example"

@@ -4,7 +4,7 @@ export interface IProps {
   style?: StyleProp<ViewStyle>;
   url?: string;
   prefetchOnly?: boolean;
-  source?: number;
+  source?: any;
   progress: number;
   containerHeight: number;
   inactiveColor?: string;

@@ -30,7 +30,8 @@ export default function App() {
           url={
             'https://sculptures-api.projectuat.com/wp-content/uploads/2021/11/SxS-PAUL-CAPORN-PLUS-INTRO.mp3'
           }
-          prefetchOnly
+          // source={'src/assets/sample-audio.mp3'}
+          // prefetchOnly
           progress={progress}
           containerHeight={40}
           inactiveColor={'#fff'}

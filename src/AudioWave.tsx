@@ -19,6 +19,7 @@ export const AudioWave = React.memo((props: IProps) => {
     style,
     progress,
     url,
+    source,
     prefetchOnly,
     containerHeight,
     activeColor,
@@ -40,7 +41,7 @@ export const AudioWave = React.memo((props: IProps) => {
     urlChanged.current = true;
   }, [url]);
 
-  const start = useCallback(async () => {
+  const analyzeRemoteData = useCallback(async () => {
     if (!url || !urlChanged.current) {
       return;
     }
@@ -59,6 +60,35 @@ export const AudioWave = React.memo((props: IProps) => {
       onError?.(error);
     }
   }, [url, onLoading, onError, onReady]);
+
+  const analyzeLocalData = useCallback(async () => {
+    if (!source) {
+      return;
+    }
+    try {
+      onLoading?.();
+      const filepath = `${ReactNativeBlobUtil.fs.dirs.MainBundleDir}/assets/${source}`;
+      const exists = await ReactNativeBlobUtil.fs.exists(filepath);
+      console.log('filepath: ', filepath, exists);
+      const path = filepath;
+      const data = await analyzeAudio(path);
+      setResult(data);
+      onReady?.();
+    } catch (error) {
+      console.log(error);
+      onError?.(error);
+    }
+  }, [source, onLoading, onError, onReady]);
+
+  const start = useCallback(() => {
+    console.log('url: ', url);
+    console.log('source: ', source);
+    if (url) {
+      analyzeRemoteData();
+    } else if (source) {
+      analyzeLocalData();
+    }
+  }, [url, source, analyzeRemoteData, analyzeLocalData]);
 
   useEffect(() => {
     start();
